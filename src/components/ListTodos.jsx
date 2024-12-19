@@ -4,6 +4,7 @@ import { IoMdAdd } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { db } from "../firebase.js";
 import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
+import SignOut from "./SignOut.jsx";
 
 function ListTodos({ user }) {
   const [loading, setLoading] = useState(true);
@@ -78,9 +79,11 @@ function ListTodos({ user }) {
   if (loading) return <p>Loading...</p>;
 
   return (
+    <>
     <div>
-      <h3>Welcome, {user}</h3>
+      <h3>Welcome, {user.email}</h3>
       <h1>Todo React App</h1>
+      <SignOut/>
       <form onSubmit={handleAddTodo}>
         <input
           type="text"
@@ -115,6 +118,7 @@ function ListTodos({ user }) {
         ))}
       </ul>
     </div>
+    </>
   );
 }
 
